@@ -68,7 +68,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? OpleidingVC {
+        if let destination = (segue.destination as? UITabBarController)?.viewControllers?.first as? OpleidingVC{
             if isFiltering() {
             destination.opleiding = filterOpleiding[(tableView.indexPathForSelectedRow?.row)!]
             } else {
