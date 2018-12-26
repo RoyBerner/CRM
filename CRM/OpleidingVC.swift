@@ -42,7 +42,6 @@ class OpleidingVC: UIViewController {
         myVC.opleidingBegin = beginLabel.text!
         myVC.opleidingEind = eindLabel.text!
         
-
     }
 
 

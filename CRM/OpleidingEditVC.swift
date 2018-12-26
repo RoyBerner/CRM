@@ -37,7 +37,6 @@ class OpleidingEditVC: UIViewController {
         beginDaumEditLbl.text = opleidingBegin
         eindDatumEditLbl.text = opleidingEind
        
-        
     }
 
 
