@@ -32,6 +32,17 @@ class OpleidingVC: UIViewController {
         prijsLabel.text = opleiding?.prijs
         beginLabel.text = opleiding?.begin_datum
         eindLabel.text = opleiding?.eind_datum
+        
+        
+        let myVC = self.tabBarController?.viewControllers![1] as! OpleidingEditVC
+        myVC.opleidingNaam = opleidingLbl.text!
+        myVC.zoeknaam = zoeknaamLbl.text!
+        myVC.opleidingID = idLbl.text!
+        myVC.opleidingPrijs = prijsLabel.text!
+        myVC.opleidingBegin = beginLabel.text!
+        myVC.opleidingEind = eindLabel.text!
+        
+
     }
 
 

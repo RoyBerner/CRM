@@ -10,6 +10,12 @@ import UIKit
 
 class OpleidingEditVC: UIViewController {
     
+    var opleidingNaam = ""
+    var zoeknaam = ""
+    var opleidingID = ""
+    var opleidingPrijs = ""
+    var opleidingBegin = ""
+    var opleidingEind = ""
     
     @IBOutlet weak var opleidingEditLbl: UITextField!
     @IBOutlet weak var zoeknaamOpleidingEditLbl: UITextField!
@@ -18,16 +24,21 @@ class OpleidingEditVC: UIViewController {
     @IBOutlet weak var beginDaumEditLbl: UITextField!
     @IBOutlet weak var eindDatumEditLbl: UITextField!
     
-    
     var opleiding:Opleiding?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        opleidingIdEditLbl.text = "test"
+        opleidingEditLbl.text = opleidingNaam
+        zoeknaamOpleidingEditLbl.text = zoeknaam
+        opleidingIdEditLbl.text = opleidingID
+        prijsEditLbl.text = opleidingPrijs
+        beginDaumEditLbl.text = opleidingBegin
+        eindDatumEditLbl.text = opleidingEind
+       
         
     }
+
 
 }

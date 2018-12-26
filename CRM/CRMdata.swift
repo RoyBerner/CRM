@@ -16,3 +16,4 @@ struct Opleiding:Decodable {
     let eind_datum: String?
     let prijs: String?
 }
+

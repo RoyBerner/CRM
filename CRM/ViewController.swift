@@ -47,10 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        //cell.textLabel?.text = opleiding[indexPath.row].naam_opleiding?.capitalized
-        //return cell
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let opleid : Opleiding
         if isFiltering() {
@@ -79,7 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     
-    
+   /*
     func downloadJSON(completed: @escaping () -> ()) {
         
         let url = URL(string: "https://royberner.nl/CRM/php/opleidingJSON.php")
@@ -94,6 +91,39 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 } catch {
                     print("JSON error")
+                }
+            }
+            }.resume()
+    }
+    */
+    
+    func downloadJSON(completed: @escaping () -> ()) {
+        let Url = String(format: "https://royberner.nl/CRM/php/opleidingJSON.php")
+        guard let serviceUrl = URL(string: Url) else { return }
+        let opleiding1 = "MRE"
+        let opleiding2 = "MSRE"
+        let parameterDictionary = ["opleiding1" : opleiding1, "opleiding2" : opleiding2]
+        var request = URLRequest(url: serviceUrl)
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameterDictionary, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        print(parameterDictionary)
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                do {
+                    self.opleiding = try JSONDecoder().decode([Opleiding].self, from: data)
+                    DispatchQueue.main.async {
+                        completed()
+                    }
+                }catch {
+                    print(error)
                 }
             }
             }.resume()
